@@ -1,10 +1,19 @@
-<%# navbar %>
-<h1>Filmstack</h1>
-<ul>
+<nav class="navbar bg-light mb-4 p-3 rounded">
+  <div class="container">
+    <a class="navbar-brand" href="<%= root_path %>">
+      <h1>Filmstack</h1>
+    </a>
+    <div class="d-flex gap-3">
+      <a class="nav-link" href="<%= lists_path %>">My Lists</a>
+      <a class="nav-link" href="<%= new_list_path %>">New List</a>
+    </div>
+  </div>
+</nav>
+
+<div class="container d-flex flex-wrap">
   <% @lists.each do |list| %>
-    <li>
+    <div class="card d-flex w-25 flex-column align-items-center p-3 m-2">
       <%= link_to list.name, list_path(list) %>
-    </li>
+    </div>
   <% end %>
-</ul>
-<%= link_to 'New List', new_list_path %>
+</div>

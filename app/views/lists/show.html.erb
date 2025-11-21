@@ -1,12 +1,30 @@
-<h1><%= @list.name %></h1>
-<ul>
+<nav class="navbar bg-light mb-4 p-3 rounded">
+  <div class="container">
+    <a class="navbar-brand" href="<%= root_path %>">
+      <h1>Filmstack</h1>
+    </a>
+    <div class="d-flex gap-3">
+      <a class="nav-link" href="<%= lists_path %>">My Lists</a>
+      <a class="nav-link" href="<%= new_list_path %>">New List</a>
+    </div>
+  </div>
+</nav>
+<div class="w-100 text-center">
+  <h2><%= @list.name %></h2>
+</div>
+<div class="mt-4 w-100 text-center">
+  <%= link_to 'Add Bookmark', new_list_bookmark_path(@list), class: "text-decoration-none" %> |
+  <%= link_to 'Back to Lists', lists_path, class: "text-decoration-none" %>
+</div>
+
+<div class="container d-flex flex-wrap">
   <% @bookmarks.each do |f| %>
-    <h3><%= f.movie.title %></h3>
-    <img src="<%= f.movie.poster_url %>" style="width:200px" alt="<%= f.movie.title %>">
-    <p>Synopsis : <%= f.movie.overview %></p>
-    <p>Spectator rating : <%= f.movie.rating %></p>
-    <p>Comment : <%= f.comment %></p>
+    <div class="card d-flex w-25 flex-column align-items-center p-3 m-2">
+        <h3><%= f.movie.title %></h3>
+        <img src="<%= f.movie.poster_url %>" style="width:200px" alt="<%= f.movie.title %>">
+        <p class="text-center">Synopsis : <%= f.movie.overview %></p>
+        <p class="text-center">Spectator rating : <%= f.movie.rating %></p>
+        <p class="text-center">Comment : <%= f.comment %></p>
+    </div>
   <% end %>
-</ul>
-<%= link_to 'Add Bookmark', new_list_bookmark_path(@list) %> |
-<%= link_to 'Back to Lists', lists_path %>
+</div>
